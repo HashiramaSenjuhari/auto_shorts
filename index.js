@@ -37,7 +37,7 @@ async function run(path,like_visible = false){
     return
   }
 
-  let {title,description,tags} = await generate("../../Downloads/videoplayback.mp4")
+  let {title,description,tags} = await generate(path)
   console.log(title,description,tags)
   const stealthPlugin = StealthPlugin()
   puppeteer.use(stealthPlugin)
@@ -54,7 +54,7 @@ async function run(path,like_visible = false){
   await page.click("[id=\"text-item-0\"]")
   await page.click("[aria-label=\"Select files\"]")
   let file = await page.waitForSelector("input[type=file]")
-  await file.uploadFile("../../Downloads/videoplayback.mp4")
+  await file.uploadFile(path)
 
   let title_input = await page.waitForSelector("div[aria-label=\"Add a title that describes your video (type @ to mention a channel)\"]")
   await page.evaluate(element => {
@@ -65,6 +65,7 @@ async function run(path,like_visible = false){
   let description_input = await page.waitForSelector("div[aria-label=\"Tell viewers about your video (type @ to mention a channel)\"]")
   await description_input.type(description)
 
+  await page.click("div[id=\"offRadio\"]")
   await page.click("button[aria-label=\"Show advanced settings\"]")
   await page.type("input[aria-label=\"Tags\"]",tags)
 
