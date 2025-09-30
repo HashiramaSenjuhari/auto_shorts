@@ -21,8 +21,10 @@ Finally
 ```bash
 // Linux or Mac
 export APP_ID=""
+export GEMINI_API_KEY=""
 
 // windows
 set APP_ID=""
+set GEMINI_API_KEY=""
 ```
 
