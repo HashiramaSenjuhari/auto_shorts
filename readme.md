@@ -2,7 +2,7 @@ To run this project
 
 run this cmd and copy the websocket uri
 
-![Ref Image](./assets/Screenshot From 2025-09-30 16-01-17.png)
+![Ref Image](/assets/Screenshot From 2025-09-30 16-01-17.png)
 
 ```windows
 "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222 --user-data-dir="C:\path\to\remote-profile" --allow-file-access-from-files
