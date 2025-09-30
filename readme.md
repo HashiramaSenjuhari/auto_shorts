@@ -2,7 +2,7 @@ To run this project
 
 run this cmd and copy the websocket uri
 
-![Ref Image](/assets/image.png)
+![Ref Image](./assets/image.png)
 
 ```windows
 "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222 --user-data-dir="C:\path\to\remote-profile" --allow-file-access-from-files
@@ -20,8 +20,8 @@ Finally
 
 ```bash
 // Linux or Mac
-export APP_ID=""
-export GEMINI_API_KEY=""
+export APP_ID="WEBSOCKET_ID"
+export GEMINI_API_KEY="GEMINI_API_KEY"
 
 // windows
 $env:APP_ID=""
