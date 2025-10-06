@@ -4,12 +4,9 @@ import { createPartFromUri, createUserContent, GoogleGenAI,Type } from "@google/
 import readline from "readline"
 import fs from "fs"
 
-//
-// let code = process.env.APP_ID
-// let api_key = process.env.GEMINI_API_KEY
 
-let code = "20b736c1-a087-49e0-b145-48fa9a97f863"
-let api_key = "AIzaSyB37Axwb2pJc8SgJ2nERUegSE7gtilm9y8"
+let code = process.env.APP_ID
+let api_key = process.env.GEMINI_API_KEY
 
 let r1 = readline.createInterface({
   input:process.stdin,
