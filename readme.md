@@ -26,11 +26,11 @@ Finally
 
 ```bash
 // Linux or Mac
-export CHROME_ID=""
+export APP_ID=""
 export GEMINI_API_KEY=""
 
 // windows
-$env CHROME_ID=""
+$env APP_ID=""
 $env GEMINI_API_KEY=""
 ```
 
