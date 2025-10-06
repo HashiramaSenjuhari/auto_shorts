@@ -4,9 +4,12 @@ import { createPartFromUri, createUserContent, GoogleGenAI,Type } from "@google/
 import readline from "readline"
 import fs from "fs"
 
+//
+// let code = process.env.APP_ID
+// let api_key = process.env.GEMINI_API_KEY
 
-let code = process.env.APP_ID
-let api_key = process.env.GEMINI_API_KEY
+let code = "20b736c1-a087-49e0-b145-48fa9a97f863"
+let api_key = "AIzaSyB37Axwb2pJc8SgJ2nERUegSE7gtilm9y8"
 
 let r1 = readline.createInterface({
   input:process.stdin,
@@ -42,7 +45,7 @@ async function run(path,like_visible = false){
   const stealthPlugin = StealthPlugin()
   puppeteer.use(stealthPlugin)
   let browser = await puppeteer.connect({
-    headless:false,
+    headless:true,
     browserWSEndpoint: `ws://127.0.0.1:9222/devtools/browser/${code}`,
     defaultViewport:null
   })
@@ -54,25 +57,44 @@ async function run(path,like_visible = false){
   await page.click("[id=\"text-item-0\"]")
   await page.click("[aria-label=\"Select files\"]")
   let file = await page.waitForSelector("input[type=file]")
+  console.log("Started Uploading video")
   await file.uploadFile(path)
+  console.log("Successfully Uploaded video")
 
+  console.log("Entering title")
   let title_input = await page.waitForSelector("div[aria-label=\"Add a title that describes your video (type @ to mention a channel)\"]")
+
   await page.evaluate(element => {
     element.textContent = ""
   },title_input)
   await title_input.type(title)
+  console.log("Completed Entering title")
 
+  console.log("Entering Description")
   let description_input = await page.waitForSelector("div[aria-label=\"Tell viewers about your video (type @ to mention a channel)\"]")
   await description_input.type(description)
+  console.log("Completed Entering Description")
 
-  await page.click("div[id=\"offRadio\"]")
+  await page.click("[name=\"VIDEO_MADE_FOR_KIDS_NOT_MFK\"]")
   await page.click("button[aria-label=\"Show advanced settings\"]")
   await page.type("input[aria-label=\"Tags\"]",tags)
 
   if(!like_visible){
     await page.click("div[aria-label=\"Show how many viewers like this video\"]")
   }
+  await sleep(180000)
   await page.click("button[aria-label=\"Next\"]")
+  await page.waitForSelector("button[aria-label=\"Next\"]")
+  await page.click("button[aria-label=\"Next\"]")
+  await page.waitForSelector("button[aria-label=\"Next\"]")
+  await page.click("button[aria-label=\"Next\"]")
+  await page.waitForSelector("[name=\"PUBLIC\"]")
+  await page.click("[name=\"PUBLIC\"]")
+  await page.waitForSelector("button[aria-label=\"Publish\"]")
+  await page.click("button[aria-label=\"Publish\"]")
+  console.log("Successfully uploaded video")
+  await page.waitForSelector("button[aria-label=\"Close\"]")
+  await page.click("button[aria-label=\"Close\"]")
 }
 
 
@@ -204,4 +226,10 @@ let schema =  {
     }
   },
   "required": ["title", "description", "tags"]
+}
+
+async function sleep(time){
+  return new Promise((resolve) => {
+      return setTimeout(resolve,time)
+  })
 }

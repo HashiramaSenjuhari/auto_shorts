@@ -2,16 +2,22 @@ To run this project
 
 run this cmd and copy the websocket uri
 
-![Ref Image](./assets/Screenshot From 2025-09-30 16-01-17.png)
+![Ref Image](./assets/image.png)
 
+### Window
 ```windows
 "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222 --user-data-dir="C:\path\to\remote-profile" --allow-file-access-from-files
+
+/// run it in browser
+localhost:9222/version/json
 ```
 
+### Linux
 ```linux
 /usr/bin/google-chrome-stable --remote-debugging-port=9222 --user-data-dir=remote-profile --allow-file-access-from-files
 ```
 
+### Mac
 ```macos
 /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222 --no-first-run --no-default-browser-check --user-data-dir=$(mktemp -d -t 'chrome-remote_data_dir')
 ```
@@ -20,11 +26,11 @@ Finally
 
 ```bash
 // Linux or Mac
-export APP_ID=""
+export CHROME_ID=""
 export GEMINI_API_KEY=""
 
 // windows
-set APP_ID=""
-set GEMINI_API_KEY=""
+$env CHROME_ID=""
+$env GEMINI_API_KEY=""
 ```
 
